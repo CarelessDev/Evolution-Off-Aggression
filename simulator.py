@@ -19,35 +19,12 @@ class Simulator:
 
         # * Shuffle
         random.shuffle(self.all_entity)
-
-        print(self.all_entity)
-        if len(self.all_entity) % 2 == 0:
-
-            for n in range(len(self.all_entity), 2):
-
-                Entity_0 = self.all_entity[n]
-                Entity_1 = self.all_entity[n+1]
-
-                Entity_0.interact(Entity_1)
-                Entity_1.interact(Entity_0)
-
-                if Entity_0.alive == True:
-                    next_gen.append(Entity(entity_type=Entity_0.type))
-                if Entity_1.alive == True:
-                    next_gen.append(Entity(entity_type=Entity_1.type))
-                
-                if Entity_0.reproduce == True:
-                    next_gen.append(Entity(entity_type=Entity_0.type))
-                if Entity_1.reproduce == True:
-                    next_gen.append(Entity(entity_type=Entity_1.type))
-
-        else:
+        if len(self.all_entity) % 2 != 0:
             next_gen.append(Entity(entity_type=self.all_entity.pop(0).type))
 
-            for n in range(len(self.all_entity), 2):
-
-                Entity_0 = self.all_entity[n]
-                Entity_1 = self.all_entity[n+1]
+        for n in range((len(self.all_entity)-2)//2):
+                Entity_0 = self.all_entity[2*n]
+                Entity_1 = self.all_entity[2*n+1]
 
                 Entity_0.interact(Entity_1)
                 Entity_1.interact(Entity_0)
@@ -82,8 +59,8 @@ class Simulator:
             print(f"Dove : {n_Dove}")
             print(f"Hawk : {n_Hawk}")
             print("--------------------")
-
+            i += 1
             
 
-simp = Simulator(n_Hawk=10, n_Dove=5)
-simp.loop(iter=5)
+simp = Simulator(n_Hawk=5, n_Dove=10)
+simp.loop(iter=4)
