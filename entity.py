@@ -28,3 +28,5 @@ class Entity:
         else:
             self.reproduce = True
         
+
+

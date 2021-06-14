@@ -42,25 +42,26 @@ class Simulator:
         self.all_entity = next_gen
 
     def loop(self, iter:int):
-
-        i = 0
+        all_loop = []
+        i = 1
         while i<=iter:
 
             self.Fight()
             n_Dove = 0
             n_Hawk = 0
 
+            loop = []
             for entity in self.all_entity:
                 if entity.type == True:
                     n_Hawk += 1
                 else:
                     n_Dove += 1
+                loop.append([n_Dove, n_Hawk])
             print("\n-------------------")
             print(f"Dove : {n_Dove}")
             print(f"Hawk : {n_Hawk}")
             print("--------------------")
+            all_loop.append(loop[-1])
             i += 1
             
-
-simp = Simulator(n_Hawk=5, n_Dove=10)
-simp.loop(iter=4)
+        return all_loop
